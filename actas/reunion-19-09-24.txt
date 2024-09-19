@@ -1,0 +1,28 @@
+Primera reunión:
+
+En primer lugar se ha discutido de cual va a ser la arquitectura del proyecto.
+
+Se valoraron dos posibilidades:
+    - Uso de dos procesos independientes que compartiesen la información mediante
+    entrada y salida estandar.
+    - Generar dos librerias de C++ a las que se pudiese llamar
+    desde un programa principal
+
+También se tuvo que decidir el sistema de construcción del proyecto, se valoraron
+tanto Makefile como CMake. Finalmente se tomó la decisión de usar CMake ya que 
+era conocido por más miembros del equipo y lo consideramos más sencillo de usar
+para este proyecto.
+
+A continuación, decidimos la metodología de trabajo. Decidimos en un inicio separar el proyecto
+en dos partes, una parte se encargará de hacer el generador de datos y la otra del filtro. 
+
+El equipo de generación de datos está formado por Pedro y Javi.
+El equipo del filtro serán Cristian y Juanjo.
+
+Las partes individuales deberán de estar listas para la proxima reunión que se celebrará 
+el día 22 o 23 (aun por determinar). En esta reunión se hablará de lo que hemos hecho y se 
+finalizarán los ajustes finos para poder integrar las dos partes.
+
+En la proxima reunión decidiremos como implementar el ejecutable que llamará a las dos
+librerias.
+
