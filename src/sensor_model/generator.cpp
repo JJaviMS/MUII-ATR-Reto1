@@ -1,4 +1,4 @@
-#include "generator.hpp"
+#include "sensor_model/generator.hpp"
 #include <random>
 #include <algorithm>
 

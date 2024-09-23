@@ -8,7 +8,8 @@ project(reto1_sensor
 include_directories(include)
 
 add_library(sensor_model STATIC
-    src/generator
+    src/sensor_model/generator.cpp
+    src/sensor_model/sensor_data.cpp
 )
 
 add_executable(application 

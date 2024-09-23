@@ -5,7 +5,7 @@ En primer lugar se ha discutido de cual va a ser la arquitectura del proyecto.
 Se valoraron dos posibilidades:
     - Uso de dos procesos independientes que compartiesen la información mediante
     entrada y salida estandar.
-    - Generar dos librerias de C++ a las que se pudiese llamar
+    - Generar una librería de C++ con dos funcionalidades a las que se pudiese llamar
     desde un programa principal
 
 También se tuvo que decidir el sistema de construcción del proyecto, se valoraron
@@ -23,6 +23,5 @@ Las partes individuales deberán de estar listas para la proxima reunión que se
 el día 22 o 23 (aun por determinar). En esta reunión se hablará de lo que hemos hecho y se 
 finalizarán los ajustes finos para poder integrar las dos partes.
 
-En la proxima reunión decidiremos como implementar el ejecutable que llamará a las dos
-librerias.
+En la proxima reunión decidiremos como implementar el ejecutable que llamará a la librería.
 

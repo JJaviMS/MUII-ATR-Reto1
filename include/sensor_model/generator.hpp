@@ -1,11 +1,12 @@
-#include <iostream>
-#include <random>
+#ifndef SENSOR_MODEL_GENERATOR_HPP
+#define SENSOR_MODEL_GENERATOR_HPP
 
+#include <random>
 
 class TemperatureGenerator {
     public:
 
-        double get_next_measure();
+        double get_next_measure(); //Hay que ver si podemos modificar esto para que sea const
 
         TemperatureGenerator(int seed, double noise_strength);
 
@@ -17,3 +18,5 @@ class TemperatureGenerator {
         std::mt19937 gen;
         std::uniform_real_distribution<> temp_variation;
 };
+
+#endif
