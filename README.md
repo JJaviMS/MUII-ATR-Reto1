@@ -2,24 +2,31 @@
 
 ### Prerequisites
 
-Having CMake (and a C++ compiler) installed. E.g. of CMake installation:
+Having CMake (and a C++ compiler) installed. E.g. of CMake installation:  
 
-> `sudo apt-get install` cmake
+```shell
+sudo apt install cmake  
+```
 
 ### Create build folder
 
-> `cd` MUII-ATR-Reto1
-> `mkdir` build
-> `cd` build
+```shell
+cd MUII-ATR-Reto1  
+mkdir build  
+cd build  
+```
 
 ### Configuring CMake with CMakeLists.txt
 
-From the **build** folder, execute
-
-> `cmake` ..
+From the **build** folder, execute  
+```shell
+cmake ..  
+```
 
 ### Building the project
 
-From the **build** folder, execute
+From the **build** folder, execute  
 
-> `cmake` --build .
+```shell
+cmake --build .
+```
