@@ -3,6 +3,9 @@
 
 #include <random>
 #include <vector>
+#include <chrono>
+
+using namespace std::chrono_literals;
 
 struct TemperatureEntry {
     double temperature;
@@ -41,7 +44,12 @@ class TemperatureGenerator {
 
         double get_next_measure(); //Hay que ver si podemos modificar esto para que sea const
 
-        TemperatureGenerator(int seed, double noise_strength, TemperatureCache* cache = NULL);
+        /// @brief Construct the Temperature generator
+        /// @param seed Seed for the RNG to get reproducible results
+        /// @param noise_strength Strength of the noise applied to the temperatures
+        /// @param tick Indicates the theoretical tick time between measures
+        /// @param cache If provided it will store the temperatures and noises
+        TemperatureGenerator(int seed, double noise_strength, std::chrono::milliseconds tick, TemperatureCache* cache = NULL);
 
     private:
         int seed;

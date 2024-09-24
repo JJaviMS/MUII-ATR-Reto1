@@ -5,12 +5,14 @@
 
 // 2^16 iteraciones
 // Forcing a power of 2 may force the compiler to use SIMD
-#define N_ITERATIONS 1<<8 
+#define N_ITERATIONS 1<<16
 
 int main(){
 
     TemperatureCache cache = TemperatureCache(N_ITERATIONS);    
-    TemperatureGenerator generator = TemperatureGenerator(0123, 0.5, &cache);
+
+    // Factor of 1 second
+    TemperatureGenerator generator = TemperatureGenerator(999, 0.5, std::chrono::milliseconds(60000), &cache);
 
     /*for (int i = 0; i<1000;i++)
         std::cout << generator.get_next_measure() << std::endl;*/
@@ -35,8 +37,8 @@ int main(){
 
     std::cout << "The accumlated error is: " << acc_difference << std::endl;
 
-    /*for (std::size_t i = 0; i < filtered_data.size(); ++i) 
-        std::cout << filtered_data[i] << '\n';*/
+    for (std::size_t i = 0; i < filtered_data.size(); ++i) 
+        std::cout << filtered_data[i] << '\n';
 
     return 0;
 }

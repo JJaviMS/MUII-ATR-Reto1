@@ -2,13 +2,20 @@
 #include <random>
 #include <algorithm>
 #include <vector>
+#include <chrono>
 
+#define MAX_VARIATION 10.0
 
-TemperatureGenerator::TemperatureGenerator(int seed, double noise_strength, TemperatureCache* cache){
+TemperatureGenerator::TemperatureGenerator(int seed, double noise_strength, std::chrono::milliseconds tick, TemperatureCache* cache){
     this->seed = seed;
     std::uniform_real_distribution<> initial_dist = std::uniform_real_distribution<>(0.0, 50.0);
     this->noise_dist = std::normal_distribution<>(0.0, noise_strength);
-    this->temp_variation = std::uniform_real_distribution<>(-2.0,2.0);
+
+    // The distribution will do small temperature changes at small ticks and bigger at big ticks
+    // The formula for the distribution is MIN(MAX_VARIATION, (ticks^1/2)/1000)
+    double distribution_factor = std::min(MAX_VARIATION,std::pow(tick.count(),1/2)/1000);
+
+    this->temp_variation = std::uniform_real_distribution<>(-distribution_factor,distribution_factor);
     std::mt19937 gen(seed);
     this -> gen = gen;
     this -> last_measure = initial_dist(gen);
