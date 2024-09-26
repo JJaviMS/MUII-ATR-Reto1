@@ -37,9 +37,5 @@ int main(int argc, char** argv) {
     std::cout << "The accumlated error after filtering is: " << acc_diff_original_filtered << " celsius degrees in " << N_ITERATIONS << " measurements\n";
     std::cout << "The average error after filtering is: " << acc_diff_original_filtered/N_ITERATIONS << " celsius degrees in " << N_ITERATIONS << " measurements\n";
 
-    std::cout << std::endl;
-
-    std::cout << "The precision improvement is of " << std::abs(acc_diff_original_filtered - acc_diff_original_noisy) * 100 / N_ITERATIONS << "\%\n";
-
     return 0;
 }
