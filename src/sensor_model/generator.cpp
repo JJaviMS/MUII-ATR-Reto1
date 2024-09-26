@@ -13,7 +13,7 @@ TemperatureGenerator::TemperatureGenerator(int seed, double noise_strength, std:
 
     // The distribution will do small temperature changes at small ticks and bigger at big ticks
     // The formula for the distribution is MIN(MAX_VARIATION, (ticks^1/2)/1000)
-    double distribution_factor = std::min(MAX_VARIATION,std::pow(tick.count(),1/2)/1000);
+    double distribution_factor = std::min(MAX_VARIATION, std::pow(tick.count(),1/2)/1000);
 
     this->temp_variation = std::uniform_real_distribution<>(-distribution_factor,distribution_factor);
     std::mt19937 gen(seed);

@@ -42,7 +42,7 @@ class TemperatureCache {
 class TemperatureGenerator {
     public:
 
-        double get_next_measure(); //Hay que ver si podemos modificar esto para que sea const
+        double get_next_measure();
 
         /// @brief Construct the Temperature generator
         /// @param seed Seed for the RNG to get reproducible results

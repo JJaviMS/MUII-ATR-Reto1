@@ -12,8 +12,17 @@ add_library(sensor_model STATIC
     src/sensor_model/sensor_data.cpp
 )
 
-add_executable(application 
-    src/main.cpp
+add_executable(comparison_app
+    src/comparison.cpp
 )
+target_link_libraries(comparison_app PUBLIC sensor_model)
 
-target_link_libraries(application PUBLIC sensor_model)
+#add_executable(measurement_generator_app
+#    src/measurement_generator.cpp
+#)
+#target_link_libraries(measurement_generator_app PUBLIC sensor_model)
+#
+#add_executable(noise_filtering_app
+#    src/noise_filtering.cpp
+#)
+#target_link_libraries(noise_filtering_app PUBLIC sensor_model)

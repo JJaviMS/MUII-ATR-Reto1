@@ -9,7 +9,8 @@ struct slr_params {
     double b1;
 };
 
-SensorData::SensorData(TemperatureGenerator& generator, std::size_t n_measurements): m_data(n_measurements) {
+SensorData::SensorData(TemperatureGenerator& generator, std::size_t n_measurements, const double time_interval_seconds)
+    : m_data(n_measurements), m_time_interval(time_interval_seconds) {
     //Ver por qué no funciona std::generate(m_data.begin(), m_data.end(), generator.get_next_measure());
     for (std::size_t i = 0; i < n_measurements; ++i)
         m_data[i] = generator.get_next_measure();
@@ -35,8 +36,7 @@ slr_params simple_linear_regresion_parameters(const std::vector<double>& X, cons
     return params;
 }
 
-std::vector<double> SensorData::filter_noise(const double time_interval_seconds, const unsigned int linear_segment_size) const {
-
+std::vector<double> SensorData::filter_noise(const double window_size_seconds) const {
     const std::size_t n_measurements = m_data.size();
 
     //Filtered data
@@ -47,13 +47,14 @@ std::vector<double> SensorData::filter_noise(const double time_interval_seconds,
     std::vector<double> time(1, 0.0);
     time.reserve(n_measurements);
     for (std::size_t i = 0; i < n_measurements - 1; ++i)
-        time.push_back(time[i] + time_interval_seconds);
+        time.push_back(time[i] + m_time_interval);
 
     //Calculating size of subvectors where it will be applied the slr
-    const std::size_t slr_size = static_cast<std::size_t>(linear_segment_size / time_interval_seconds);
 
-    if (slr_size <= 1 )
+    if (window_size_seconds <= m_time_interval )
         throw ""; //TODO: Implement proper exception
+
+    const std::size_t slr_size = static_cast<std::size_t>(window_size_seconds / m_time_interval);
     
     std:size_t first = 0;
     while (first + slr_size < n_measurements) {
@@ -75,7 +76,7 @@ std::vector<double> SensorData::filter_noise(const double time_interval_seconds,
 std::ostream& operator<<(std::ostream& out, const SensorData& sensor_data) {
 
     for (std::size_t i = 0; i < sensor_data.m_data.size(); ++i)
-        out << sensor_data.m_data[i] <<  " C\n";
+        out << sensor_data.m_data[i] << ";";
 
     return out;
 }
